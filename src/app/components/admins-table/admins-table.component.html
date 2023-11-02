@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Admins List</h2>
-    <button mat-raised-button class="newAdmin-btn" (click)="addNewAdmin()">Add New Admin</button>
+    <button mat-raised-button class="newAdmin-btn" routerLink="/admins/add">Add New Admin</button>
     <table mat-table [dataSource]="admins">
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -20,7 +20,7 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
             <td mat-cell *matCellDef="let admin">
-            <button mat-icon-button (click)="editAdmin(admin.id)">
+            <button mat-icon-button [routerLink]="['/admins/edit', admin.id]">
                 <mat-icon class="edit-icon">edit</mat-icon>
             </button>
             <button mat-icon-button (click)="deleteAdmin(admin.id)">

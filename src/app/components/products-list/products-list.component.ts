@@ -25,13 +25,6 @@ export class ProductsListComponent implements OnInit {
       this.products = data;
     });
   }
-  addNewProduct() {
-    this.router.navigate(['/products/add']);
-  }
-  
-  editProduct(id: string) {
-    this.router.navigate(['/products/edit', id]);
-  }
 
   deleteProduct(id: string) {
     this.productsService.deleteProduct(id).subscribe(() => {

@@ -1,10 +1,13 @@
 <div class="container">
     <h2>Products List</h2>
-    <button mat-raised-button class="newProduct-btn" (click)="addNewProduct()">Add New Product</button>
+    <button mat-raised-button class="newProduct-btn" routerLink="/products/add">Add New Product</button>
     <table mat-table [dataSource]="products">
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Product Name </th>
-            <td mat-cell *matCellDef="let product"> {{ product.name }} </td>
+            <td mat-cell *matCellDef="let product"> 
+                <img style="height: 100px;" src="{{product.imageUrl}}" alt="{{product.name}}">
+                {{ product.name }}
+            </td>
         </ng-container>
         <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef> Description </th>
@@ -26,7 +29,7 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
             <td mat-cell *matCellDef="let product">
-            <button mat-icon-button (click)="editProduct(product.id)">
+            <button mat-icon-button [routerLink]="['/products/edit', product.id]">
                 <mat-icon class="edit-icon" >edit</mat-icon>
             </button>
             <button mat-icon-button (click)="deleteProduct(product.id)">

@@ -44,28 +44,94 @@
   },
   "products": [
     {
-      "name": "Chipsy",
-      "description": "Flavour: Cheese",
+      "name": "Tiger Excellence Fried Potato Chips ",
+      "description": "Lime Coriander - 80 gm",
       "category": "Food",
       "price": 30,
       "quantity": 15,
+      "imageUrl": "https://cdnprod.mafretailproxy.com/sys-master-root/h1b/h6b/49273985728542/1700Wx1700H_608662_main.jpg",
       "id": 1
     },
     {
-      "name": "Pepsi",
-      "description": "Diet",
+      "name": "Spiro Spathis",
+      "description": "Apple - 330ml",
       "category": "Beverages",
       "price": 20,
       "quantity": 35,
+      "imageUrl": "https://m.media-amazon.com/images/I/51tskYKfrSS.jpg",
       "id": 2
     },
     {
-      "name": "Tea",
+      "name": "Spiro Spathis",
+      "price": 20,
+      "description": "Lemon - 330ml",
+      "quantity": 13,
+      "category": "Beverages",
+      "imageUrl": "https://m.media-amazon.com/images/I/518b7GAV9FS.jpg",
+      "id": 3
+    },
+    {
+      "name": "Spiro Spathis",
+      "price": 20,
+      "description": "Pineapple - 330ml",
+      "quantity": 13,
+      "category": "Beverages",
+      "imageUrl": "https://m.media-amazon.com/images/I/51muPcGu5HS.jpg",
+      "id": 4
+    },
+    {
+      "name": "Tiger Excellence Fried Potato Chips ",
+      "imageUrl": "https://cdnprod.mafretailproxy.com/sys-master-root/h9d/h11/49855332089886/480Wx480H_608660_main.jpg",
+      "price": 20,
+      "description": "Sea Salt and Vineger - 80gm",
+      "quantity": 14,
+      "category": "Food",
+      "id": 5
+    },
+    {
+      "name": "Pepsi",
+      "imageUrl": "https://cdnprod.mafretailproxy.com/sys-master-root/h9d/h11/49855332089886/480Wx480H_608660_main.jpg",
       "price": 50,
       "description": "200gm",
       "quantity": 13,
       "category": "Beverages",
-      "id": 3
+      "id": 6
+    },
+    {
+      "name": "Pepsi",
+      "price": 50,
+      "description": "200gm",
+      "quantity": 13,
+      "category": "Beverages",
+      "imageUrl": "https://cdnprod.mafretailproxy.com/sys-master-root/h9d/h11/49855332089886/480Wx480H_608660_main.jpg",
+      "id": 7
+    },
+    {
+      "name": "Pepsi",
+      "imageUrl": "https://cdnprod.mafretailproxy.com/sys-master-root/h9d/h11/49855332089886/480Wx480H_608660_main.jpg",
+      "price": 10,
+      "description": "200gm",
+      "quantity": 130,
+      "category": "Beverages",
+      "id": 8
+    },
+    {
+      "name": "Pepsi",
+      "imageUrl": "https://cdnprod.mafretailproxy.com/sys-master-root/h9d/h11/49855332089886/480Wx480H_608660_main.jpg",
+      "price": 50,
+      "description": "200gm",
+      "quantity": 13,
+      "category": "Beverages",
+      "id": 9
+    },
+    {
+      "name": "Pepsi",
+      "imageUrl": "https://cdnprod.mafretailproxy.com/sys-master-root/h9d/h11/49855332089886/480Wx480H_608660_main.jpg",
+      "price": 50,
+      "description": "200gm",
+      "quantity": 13,
+      "category": "Beverages",
+      "id": 10
     }
   ]
 }

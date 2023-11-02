@@ -4,28 +4,33 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'edit-admin-form',
-  templateUrl: './edit-admin-form.component.html',
-  styleUrls: ['./edit-admin-form.component.scss']
+  selector: 'admin-form',
+  templateUrl: './admin-form.component.html',
+  styleUrls: ['./admin-form.component.scss']
 })
-export class EditAdminFormComponent {
+export class AdminFormComponent {
   adminForm: FormGroup;
   adminId: string;
+  isEditing: boolean;
 
   constructor(private fb: FormBuilder, private userService: AuthService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.adminId = this.route.snapshot.paramMap.get('id');
+    this.isEditing = !!this.adminId;
+
 
     this.adminForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      role:['role']
+      role:['admin']
     });
 
-    this.initializeFormForEdit(this.adminId);
+    if (this.isEditing) {
+      this.initializeFormForEdit(this.adminId);
+    }
   }
 
   initializeFormForEdit(adminId: string) {
@@ -48,9 +53,16 @@ export class EditAdminFormComponent {
   submitAdmin() {
     const formData = this.adminForm.value;
 
-    // Handle editing logic here
-    this.userService.editAdmin(this.adminId, formData).subscribe(() => {
-      this.router.navigate(['/home']); 
-    });
+    if (this.isEditing) {
+      // Handle editing logic here
+      this.userService.editAdmin(this.adminId, formData).subscribe(() => {
+        this.router.navigate(['/home']); 
+      });
+  }
+    else{
+      this.userService.registerUser(formData).subscribe(() => {
+        this.router.navigate(['/home']); 
+      });
+    }
   }
 }

@@ -27,13 +27,6 @@ export class AdminsTableComponent implements OnInit {
       this.admins = data.filter((user) => user.role === 'admin');
     });
   }
-  addNewAdmin() {
-    this.router.navigate(['/admins/add']);
-  }
-  
-  editAdmin(id: string) {
-    this.router.navigate(['/admins/edit', id]);
-  }
 
   deleteAdmin(id: string) {
     this.usersService.deleteAdmin(id).subscribe(() => {

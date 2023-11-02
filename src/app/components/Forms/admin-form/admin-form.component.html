@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Edit Admin</h2>
+    <h2>{{ isEditing ? 'Edit Admin' : 'Add New Admin' }}</h2>
     <form [formGroup]="adminForm" (ngSubmit)="submitAdmin()">
         <div class="form-group">
             <label for="firstName">First Name:</label>
@@ -17,6 +17,8 @@
             <label for="password">Password:</label>
             <input type="password" id="password" formControlName="password" class="form-control">
         </div>
-        <button type="submit" class="btn">Update Admin</button>
+        <button type="submit" class="btn">
+            {{ isEditing ? 'Update Admin' : 'Add Admin' }}
+        </button>
     </form>
 </div>

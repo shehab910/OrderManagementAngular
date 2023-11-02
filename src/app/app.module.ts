@@ -21,11 +21,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { MatIconModule } from '@angular/material/icon';
-import { NewProductFormComponent } from './components/Forms/new-product-form/new-product-form.component';
-import { EditProductFormComponent } from './components/Forms/edit-product-form/edit-product-form.component';
+import { ProductFormComponent } from './components/Forms/product-form/product-form.component';
 import { AdminsTableComponent } from './components/admins-table/admins-table.component';
-import { EditAdminFormComponent } from './components/Forms/edit-admin-form/edit-admin-form.component';
-import { NewAdminFormComponent } from './components/Forms/new-admin-form/new-admin-form.component';
+import { AdminFormComponent } from './components/Forms/admin-form/admin-form.component';
+import { CustomerHomePageComponent } from './components/customer-home-page/customer-home-page.component';
 
 
 @NgModule({
@@ -35,11 +34,10 @@ import { NewAdminFormComponent } from './components/Forms/new-admin-form/new-adm
     RegisterComponent,
     HomeComponent,
     ProductsListComponent,
-    NewProductFormComponent,
-    EditProductFormComponent,
+    ProductFormComponent,
     AdminsTableComponent,
-    EditAdminFormComponent,
-    NewAdminFormComponent,
+    AdminFormComponent,
+    CustomerHomePageComponent,
   ],
   imports: [
     BrowserModule,
