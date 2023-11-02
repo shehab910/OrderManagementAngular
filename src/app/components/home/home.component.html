@@ -1,0 +1,26 @@
+<div class="container">
+    <mat-toolbar>
+        <span>My OMS</span>
+        <button mat-raised-button 
+            class="logout-btn"
+            (click)="logOut()">
+            Log Out
+        </button>
+    </mat-toolbar>
+    <ng-container *ngIf="userRole === 'admin'; then adminContent else 
+    userRole === 'manager' ? managerContent : defaultContent"></ng-container>
+    <ng-template #adminContent>
+        <h1>Welcome to the Dashboard</h1>
+        <products-list></products-list>
+    </ng-template>
+    <ng-template #defaultContent>
+        <p>Hello Customer!</p>
+        <!-- Add content common to customers here -->
+    </ng-template>
+    <ng-template #managerContent>
+        <h1>Welcome to the Manager's Dashboard</h1>
+        <products-list></products-list>
+        <admins-table></admins-table>
+        <!-- Add content common to manager here -->
+    </ng-template>
+</div>

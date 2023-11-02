@@ -1,0 +1,52 @@
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+        <mat-card class="card-container">
+            <mat-card-header class="card-title">
+                <h1>Login</h1>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field class="input-form" appearance="fill">
+                    <label for="email">Email</label>
+                    <input matInput 
+                    placeholder="Enter your email" 
+                    type="text" 
+                    formControlName="email" 
+                    name="email"
+                    id="email">
+                    <small
+                        *ngIf="email.invalid && (email.dirty || email.touched)"
+                        class="input-error"
+                    >
+                        <div *ngIf="email.errors?.['required']">Email is required.</div>
+                        <div *ngIf="email.errors?.['email']">Email should be valid</div>
+                    </small>
+                </mat-form-field>
+                <mat-form-field class="input-form" appearance="fill">
+                    <label for="password">Password</label>
+                    <input matInput 
+                    placeholder="Enter your password" 
+                    type="password" 
+                    formControlName="password" 
+                    name="password"
+                    id="password">
+                    <small
+                    *ngIf="password.invalid && (password.dirty || password.touched)"
+                    class="input-error"
+                    >
+                        <div *ngIf="password.errors?.['required']">Password is required.</div>
+                    </small>
+                </mat-form-field>
+                <br>
+                <button mat-raised-button 
+                class="sign-btn"
+                [disabled]="loginForm.invalid"
+                type="submit"
+                >SIGN IN</button>
+                <div>
+                    Not a member? 
+                    <a routerLink="/register">Register</a>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>

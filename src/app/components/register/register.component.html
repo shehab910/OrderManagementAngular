@@ -1,0 +1,110 @@
+<div class="container">
+    <form [formGroup]="registerForm"  (ngSubmit)="submitDetails()">
+        <mat-card class="card-container">
+            <mat-card-header class="card-title">
+                <h1>Register</h1>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field class="input-form" appearance="fill">
+                    <label for="firstName">First Name</label>
+                    <input matInput 
+                    placeholder="Enter your first name" 
+                    type="text" 
+                    formControlName="firstName" 
+                    name="firstName"
+                    id="firstName">
+                    <small
+                        *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                        class="input-error"
+                    >
+                        <div *ngIf="firstName.errors?.['required']">First Name is required.</div>
+                        <div *ngIf="firstName.errors?.['pattern']">Enter a valid name</div>
+                    </small>
+                </mat-form-field>
+                <mat-form-field class="input-form" appearance="fill">
+                    <label for="lastName">Last Name</label>
+                    <input matInput 
+                    placeholder="Enter your last name" 
+                    type="text" 
+                    formControlName="lastName" 
+                    name="lastName"
+                    id="lastName">
+                    <small
+                        *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                        class="input-error"
+                    >
+                        <div *ngIf="lastName.errors?.['required']">last Name is required.</div>
+                        <div *ngIf="lastName.errors?.['pattern']">Enter a valid name</div>
+                    </small>
+                </mat-form-field>
+                <mat-form-field class="input-form" appearance="fill">
+                    <label for="email">Email</label>
+                    <input matInput 
+                    placeholder="Enter your email" 
+                    type="text" 
+                    formControlName="email" 
+                    name="email"
+                    id="email">
+                    <small
+                        *ngIf="email.invalid && (email.dirty || email.touched)"
+                        class="input-error"
+                    >
+                        <div *ngIf="email.errors?.['required']">Email is required.</div>
+                        <div *ngIf="email.errors?.['email']">Email should be valid</div>
+                    </small>
+                </mat-form-field>
+                <mat-form-field class="input-form" appearance="fill">
+                    <label for="password">Password</label>
+                    <input matInput 
+                    placeholder="Enter your password" 
+                    type="password" 
+                    formControlName="password" 
+                    name="password"
+                    id="password">
+                    <small
+                    *ngIf="password.invalid && (password.dirty || password.touched)"
+                    class="input-error"
+                    >
+                        <div *ngIf="password.errors?.['required']">Password is required.</div>
+                    </small>
+                </mat-form-field>
+                <mat-form-field class="input-form" appearance="fill">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input matInput 
+                    placeholder="Confirm your password" 
+                    type="password" 
+                    formControlName="confirmPassword" 
+                    name="confirmPassword"
+                    id="confirmPassword">
+                    <small
+                    *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
+                    class="input-error"
+                    >
+                        <div *ngIf="confirmPassword.errors?.['required']">Password didn't match.</div>
+                    </small>
+                    <small
+                        class="input-error"
+                        *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid"
+                    >
+                        Passwords should match.
+                    </small>
+                </mat-form-field>
+                <!-- <mat-form-field class="input-form" appearance="fill">
+                    <label for="role">Role</label>
+                    <mat-select formControlName="role" name="role" (change)="onRoleChange($event)">
+                        <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+                <br>
+                <button mat-raised-button 
+                class="register-btn"
+                type="submit"
+                >Register</button>
+                <div>
+                    Already a member? 
+                    <a routerLink="/login">Login Now!</a>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>

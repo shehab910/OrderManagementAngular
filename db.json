@@ -1,0 +1,71 @@
+{
+  "users": [
+    {
+      "firstName": "Nourallah",
+      "lastName": "Khaled",
+      "email": "nourallahkhaled99@gmail.com",
+      "password": "1234",
+      "role": "manager",
+      "id": 1
+    },
+    {
+      "firstName": "Nourallah",
+      "lastName": "Khaled",
+      "email": "nourallah@gmail.com",
+      "password": "12345",
+      "role": "admin",
+      "id": 2
+    },
+    {
+      "firstName": "Menna",
+      "lastName": "Mohamed",
+      "email": "menna@gmail.com",
+      "password": "1234",
+      "id": 3
+    },
+    {
+      "firstName": "Mai",
+      "lastName": "Hesham",
+      "email": "mai@gmail.com",
+      "password": "1234",
+      "id": 4
+    },
+    {
+      "firstName": "Ghada",
+      "lastName": "Mohamed",
+      "email": "ghada@gmail.com",
+      "password": "1234",
+      "role": "admin",
+      "id": 5
+    }
+  ],
+  "_defaults": {
+    "users": "get"
+  },
+  "products": [
+    {
+      "name": "Chipsy",
+      "description": "Flavour: Cheese",
+      "category": "Food",
+      "price": 30,
+      "quantity": 15,
+      "id": 1
+    },
+    {
+      "name": "Pepsi",
+      "description": "Diet",
+      "category": "Beverages",
+      "price": 20,
+      "quantity": 35,
+      "id": 2
+    },
+    {
+      "name": "Tea",
+      "price": 50,
+      "description": "200gm",
+      "quantity": 13,
+      "category": "Beverages",
+      "id": 3
+    }
+  ]
+}

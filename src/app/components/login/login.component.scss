@@ -1,0 +1,28 @@
+.container{
+    padding: 170px 0px;
+    
+    .card-container{
+        width: 360px;
+        margin: auto;
+        border: 1px solid transparent;
+        border-radius: 5%;
+        color: #190482;
+        
+        .card-title{
+            font-size: 14px;
+        }
+        
+        .input-form{
+            width: 100%;
+        }
+        .input-error{
+            color: red;
+        }
+        .sign-btn{
+            width: 100%;
+            background-color: #190482;
+            color: white;
+            margin-bottom:12px;
+        }
+    }
+}

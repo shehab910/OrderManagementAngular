@@ -1,0 +1,24 @@
+.container{
+    margin: 35px;
+    color: rgb(0, 0, 73);
+    .newProduct-btn{
+        background-color: rgb(0, 0, 73);
+        color: white;
+        margin-left: 45%;
+        margin-bottom: 10px;
+    }
+}
+table{
+    border: 2px solid rgb(0, 0, 73);
+
+    th{
+        background-color: rgb(0, 0, 73);
+        color: white;
+    }
+}
+.edit-icon{
+    color: rgb(0, 115, 255);
+}
+.delete-icon{
+    color: rgb(180, 18, 18);
+}
