@@ -3,7 +3,19 @@ mat-toolbar{
     color: white;
 }
 .logout-btn{
-    margin-left: 80%;
+    margin-left: 3%;
+}
+.my-cart{
+    margin-left:75%;
+    cursor: pointer;
+}
+.cart-count{
+    background-color: #E4DCCF;
+    color: #002B5B;
+    border-radius: 50%;
+    width: 20px;
+    text-align: center;
+    margin-left: -2px;
 }
 h1{
     text-align: center;

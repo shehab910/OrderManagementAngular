@@ -25,6 +25,7 @@ import { ProductFormComponent } from './components/Forms/product-form/product-fo
 import { AdminsTableComponent } from './components/admins-table/admins-table.component';
 import { AdminFormComponent } from './components/Forms/admin-form/admin-form.component';
 import { CustomerHomePageComponent } from './components/customer-home-page/customer-home-page.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { CustomerHomePageComponent } from './components/customer-home-page/custo
     AdminsTableComponent,
     AdminFormComponent,
     CustomerHomePageComponent,
+    ShoppingCartComponent,
   ],
   imports: [
     BrowserModule,
