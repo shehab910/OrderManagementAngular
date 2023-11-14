@@ -29,9 +29,9 @@ export class AuthService {
     return this.http.get<User[]>(`${this.baseUrl}/users?email=${email}`).pipe(
       map((users: User[]) => {
         if (users.length > 0) {
-          return users[0]; // Assuming email is unique, take the first user found
+          return users[0]; 
         }
-        return null; // User not found
+        return null; 
       })
     );
   }

@@ -26,6 +26,7 @@ import { AdminsTableComponent } from './components/admins-table/admins-table.com
 import { AdminFormComponent } from './components/Forms/admin-form/admin-form.component';
 import { CustomerHomePageComponent } from './components/customer-home-page/customer-home-page.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     AdminFormComponent,
     CustomerHomePageComponent,
     ShoppingCartComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

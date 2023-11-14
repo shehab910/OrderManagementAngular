@@ -7,6 +7,7 @@ import { authGuard } from './guards/auth.guard';
 import { ProductFormComponent } from './components/Forms/product-form/product-form.component';
 import { AdminFormComponent } from './components/Forms/admin-form/admin-form.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 const routes: Routes = [
   {path:'home', component: HomeComponent, canActivate: [authGuard]},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'admins/edit/:id', component: AdminFormComponent },
   { path: 'admins/add', component: AdminFormComponent },
   { path: 'cart', component: ShoppingCartComponent },
+  { path: 'checkout', component: CheckoutComponent },
 ];
 
 @NgModule({

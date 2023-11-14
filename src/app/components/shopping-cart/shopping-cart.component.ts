@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartItem } from 'src/app/interfaces/cartItem';
 import { Product } from 'src/app/interfaces/product';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
@@ -11,7 +12,8 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 export class ShoppingCartComponent {
   cartItems: CartItem[] = [];
 
-  constructor(private shoppingCartService: ShoppingCartService) {
+  constructor(private shoppingCartService: ShoppingCartService,
+    private router: Router) {
     this.cartItems = shoppingCartService.getCartItems();
   }
 
@@ -39,5 +41,7 @@ export class ShoppingCartComponent {
     this.shoppingCartService.clearCart();
     return this.cartItems = this.shoppingCartService.getCartItems();
   }
-
+  goToCheckout(){
+    this.router.navigate(['checkout']);
+  }
 }

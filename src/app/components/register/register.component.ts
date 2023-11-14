@@ -12,15 +12,6 @@ import { passwordMatchValidator } from 'src/app/shared/password-match.directive'
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  // // Define an array of roles
-  // roles = ['customer', 'admin'];
-
-  // // Initialize the selected role with the first role in the array
-  // selectedRole = this.roles[0];
-  // // Handle role selection change
-  // onRoleChange(event: Event): void {
-  //   this.selectedRole = (event.target as HTMLSelectElement).value;
-  // }
 
   registerForm = this.fb.group({
     firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
@@ -28,7 +19,6 @@ export class RegisterComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
     confirmPassword: ['', Validators.required],
-    // role: ['', Validators.required]
   },{
     validators: passwordMatchValidator
   })
