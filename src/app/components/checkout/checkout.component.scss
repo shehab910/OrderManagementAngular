@@ -48,7 +48,6 @@
         font-weight: bold;
     }
 }
-// checkout-page.component.scss
 
 .section {
     margin-bottom: 20px;
@@ -80,19 +79,5 @@
           }
         }
       }
-  
-      .continue-button {
-        background-color: #ea5455;
-        color: #fff;
-        padding: 5px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-  
-        &:hover {
-          background-color: #d94452;
-        }
-      }
     }
-  }
-  
+}
