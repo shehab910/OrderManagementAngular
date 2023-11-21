@@ -48,10 +48,10 @@ export class AuthService {
       url: '/user/login',
       data: user,
     }).then((res) => {
-      this.setAuthToken(res?.data?.token);
-      //TODO: change hardcoded values
-      sessionStorage.setItem('email', 'blz@example.com');
-      sessionStorage.setItem('role', 'CUSTOMER');
+      const userDetails = res?.data;
+      this.setAuthToken(userDetails?.token);
+      sessionStorage.setItem('email', userDetails?.email);
+      sessionStorage.setItem('role', userDetails?.role);
       return res;
     });
   }
