@@ -2,32 +2,41 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { User } from 'src/app/interfaces/auth';
+import { User, UserSignupReq } from 'src/app/interfaces/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { passwordMatchValidator } from 'src/app/shared/password-match.directive';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
+  registerForm = this.fb.group(
+    {
+      firstName: [
+        '',
+        [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)],
+      ],
+      lastName: [
+        '',
+        [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)],
+      ],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+    },
+    {
+      validators: passwordMatchValidator,
+    }
+  );
 
-  registerForm = this.fb.group({
-    firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
-    lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
-    confirmPassword: ['', Validators.required],
-  },{
-    validators: passwordMatchValidator
-  })
-
-  constructor(private fb: FormBuilder, 
+  constructor(
+    private fb: FormBuilder,
     private authService: AuthService,
     private snackBar: MatSnackBar,
     private router: Router
-    ){}
+  ) {}
 
   get firstName() {
     return this.registerForm.controls['firstName'];
@@ -47,23 +56,38 @@ export class RegisterComponent {
   get confirmPassword() {
     return this.registerForm.controls['confirmPassword'];
   }
-  
+
   submitDetails() {
     const postData = { ...this.registerForm.value };
     delete postData.confirmPassword;
-    this.authService.registerUser(postData as User).subscribe({
-      next: (response) => {
-        this.snackBar.open('Registered Successfully', 'Close', {
-          duration: 3000, 
-        });
-        this.router.navigate(['login']);
-      },
-      error: (e) => {
+    this.authService.signup(postData as UserSignupReq).then((response) => {
+      try {
+        if (response.status === 200) {
+          this.snackBar.open('Registered Successfully', 'Close', {
+            duration: 3000,
+          });
+          this.router.navigate(['login']);
+        }
+      } catch (e) {
         console.log(e);
         this.snackBar.open('Something went wrong!', 'Close', {
           duration: 3000,
         });
       }
-  });
+    });
+    // this.authService.registerUser(postData as UserSignupReq).subscribe({
+    //   next: (response) => {
+    //     this.snackBar.open('Registered Successfully', 'Close', {
+    //       duration: 3000,
+    //     });
+    //     this.router.navigate(['login']);
+    //   },
+    //   error: (e) => {
+    //     console.log(e);
+    //     this.snackBar.open('Something went wrong!', 'Close', {
+    //       duration: 3000,
+    //     });
+    //   },
+    // });
   }
 }

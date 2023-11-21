@@ -1,46 +1,59 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../interfaces/auth';
-import { Observable, map } from 'rxjs';
+import axios from 'axios';
+import { UserLoginReq, UserSignupReq } from '../interfaces/auth';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:3000';
+  constructor() {
+    // axios.defaults.baseURL = 'http://localhost:8080';
+    axios.defaults.headers.post['Content-Type'] = 'application/json';
+  }
 
-  constructor(private http: HttpClient) { }
+  getAuthToken(): string | null {
+    return window.localStorage.getItem('auth_token');
+  }
 
-  registerUser(userDetails: User){
-    const url = `${this.baseUrl}/users`;
-    return this.http.post(url, userDetails);
+  setAuthToken(token: string | null): void {
+    if (token !== null) {
+      window.localStorage.setItem('auth_token', token);
+    } else {
+      window.localStorage.removeItem('auth_token');
+    }
   }
-  getAllUsers(): Observable<User[]> {
-    const url = `${this.baseUrl}/users`; 
-    return this.http.get<User[]>(url);
+
+  authenticatedRequest(method: string, url: string, data: any): Promise<any> {
+    let headers: any = {};
+
+    if (this.getAuthToken() !== null) {
+      headers = { Authorization: 'Bearer ' + this.getAuthToken() };
+    } else {
+      throw new Error('No token, login first');
+      //TODO: handle error
+    }
+
+    return axios({
+      method: method,
+      url: url,
+      data: data,
+      headers: headers,
+    });
   }
-  getUserByEmail(email: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.baseUrl}/users?email=${email}`);
+
+  login(user: UserLoginReq) {
+    return axios({
+      method: 'POST',
+      url: '/user/login',
+      data: user,
+    });
   }
-  getUserById(id: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.baseUrl}/users?id=${id}`);
-  }
-  getUserRole(email: string): Observable<User | null> {
-    return this.http.get<User[]>(`${this.baseUrl}/users?email=${email}`).pipe(
-      map((users: User[]) => {
-        if (users.length > 0) {
-          return users[0]; 
-        }
-        return null; 
-      })
-    );
-  }
-  editAdmin(id: string, userDetails: User): Observable<User> {
-    const url = `${this.baseUrl}/users/${id}`;
-    return this.http.put<User>(url, userDetails);
-  }
-  deleteAdmin(id: string): Observable<void> {
-    const url = `${this.baseUrl}/users/${id}`;
-    return this.http.delete<void>(url);
+
+  signup(user: UserSignupReq) {
+    return axios({
+      method: 'POST',
+      url: '/user/signup',
+      data: user,
+    });
   }
 }

@@ -1,0 +1,14 @@
+{
+  "/user/": {
+    "target": "http://localhost:8765",
+    "secure": false
+  },
+  "/products/": {
+    "target": "http://localhost:8765",
+    "secure": false
+  },
+  "/products": {
+    "target": "http://localhost:8765",
+    "secure": false
+  }
+}

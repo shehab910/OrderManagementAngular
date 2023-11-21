@@ -6,35 +6,34 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'admins-table',
   templateUrl: './admins-table.component.html',
-  styleUrls: ['./admins-table.component.scss']
+  styleUrls: ['./admins-table.component.scss'],
 })
 export class AdminsTableComponent implements OnInit {
-  admins: User[] = []; 
+  admins: User[] = [];
   displayedColumns: string[] = ['name', 'email', 'role', 'actions'];
 
   constructor(private usersService: AuthService, private router: Router) {}
-
 
   ngOnInit(): void {
     // Fetch the list of admins from your service when the component is initialized
     this.loadAdmins();
   }
-  
+
   loadAdmins() {
     // Fetch all users
-    this.usersService.getAllUsers().subscribe((data) => {
-      // Filter users with 'admin' role
-      this.admins = data.filter((user) => user.role === 'admin');
-    });
+    // this.usersService.getAllUsers().subscribe((data) => {
+    //   // Filter users with 'admin' role
+    //   this.admins = data.filter((user) => user.role === 'admin');
+    // });
   }
 
   deleteAdmin(id: string) {
-    this.usersService.deleteAdmin(id).subscribe(() => {
-      // If the deletion is successful, remove the product from the local list.
-      this.admins = this.admins.filter((admin) => admin.id !== id);
-    }, (error) => {
-      // Handle the error, e.g., display an error message.
-      console.error('Error deleting product:', error);
-    });
+    //   this.usersService.deleteAdmin(id).subscribe(() => {
+    //     // If the deletion is successful, remove the product from the local list.
+    //     this.admins = this.admins.filter((admin) => admin.id !== id);
+    //   }, (error) => {
+    //     // Handle the error, e.g., display an error message.
+    //     console.error('Error deleting product:', error);
+    //   });
   }
 }
