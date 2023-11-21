@@ -22,17 +22,17 @@ export class CustomerHomePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.productService.getAllProducts().then((res) => {
-      if (res?.status !== HttpStatusCode.Ok) {
-        this.snackBar.open(res?.data?.message, 'Close', {
-          duration: 3000,
+    this.productService
+      .getAllProducts()
+      .then((data) => {
+        this.products = data;
+        this.filteredProducts = this.products;
+      })
+      .catch((_) => {
+        this.snackBar.open('Error loading products', 'Close', {
+          duration: 2000,
         });
-        return;
-      }
-      const data = res?.data;
-      this.products = data;
-      this.filteredProducts = this.products;
-    });
+      });
   }
   onSearch() {
     this.filteredProducts = this.products.filter((product) =>

@@ -21,13 +21,9 @@ export class ProductsService {
     return this.authService
       .authenticatedRequest('GET', `/products/${id}`, {})
       .then((res) => {
-        console.log(res);
         if (res?.status === 200) {
           return res?.data;
         }
-      })
-      .catch((err) => {
-        console.log(err);
       });
   }
   // get all products
@@ -35,13 +31,9 @@ export class ProductsService {
     return this.authService
       .authenticatedRequest('GET', '/products', {})
       .then((res) => {
-        console.log(res);
         if (res?.status === 200) {
           return res?.data;
         }
-      })
-      .catch((err) => {
-        console.log(err);
       });
   }
   // Edit a product

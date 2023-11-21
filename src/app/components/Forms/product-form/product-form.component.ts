@@ -48,8 +48,6 @@ export class ProductFormComponent {
     this.productService
       .getProductById(productId)
       .then((product: NewProduct) => {
-        console.log('PRODUCT', product);
-        //TODO: this return should be removed after making sure product have the correct fields
         if (product) {
           this.productForm.setValue({
             name: product.name,
@@ -60,6 +58,11 @@ export class ProductFormComponent {
             quantity: product.quantity,
           });
         }
+      })
+      .catch((e) => {
+        this.snackBar.open('Something went wrong!', 'Close', {
+          duration: 3000,
+        });
       });
   }
 
@@ -70,7 +73,6 @@ export class ProductFormComponent {
       categoryId: this.productForm.value.category,
       category: undefined,
     };
-    console.log(formData);
 
     if (this.isEditing) {
       // Handle editing logic here
@@ -96,14 +98,9 @@ export class ProductFormComponent {
       this.productService
         .addProduct(formData)
         .then((res) => {
-          console.log('response', res);
           //TODO: this status code should be CREATED both in front and back
           if (res.status === HttpStatusCode.Ok) {
             this.router.navigate(['/home']); // Navigate to the product list page after adding
-          } else {
-            this.snackBar.open(res?.data?.message, 'Close', {
-              duration: 3000,
-            });
           }
         })
         .catch((_) => {

@@ -3,6 +3,7 @@ import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/products.service';
 import { Router } from '@angular/router';
 import { HttpStatusCode } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'products-list',
@@ -22,7 +23,8 @@ export class ProductsListComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -31,9 +33,16 @@ export class ProductsListComponent implements OnInit {
   }
 
   loadProducts() {
-    this.productsService.getAllProducts().then((data) => {
-      this.products = data;
-    });
+    this.productsService
+      .getAllProducts()
+      .then((data) => {
+        this.products = data;
+      })
+      .catch((_) => {
+        this.snackBar.open('Error loading products', 'Close', {
+          duration: 2000,
+        });
+      });
   }
 
   deleteProduct(id: string) {
@@ -43,13 +52,15 @@ export class ProductsListComponent implements OnInit {
         // If the deletion is successful, remove the product from the local list.
         if (res?.status === HttpStatusCode.Ok) {
           this.products = this.products.filter((product) => product.id !== id);
-        } else {
-          throw new Error('');
+          this.snackBar.open('Product deleted successfully', 'Close', {
+            duration: 2000,
+          });
         }
       })
-      .catch((error) => {
-        // Handle the error, e.g., display an error message.
-        console.error('Error deleting product', error);
+      .catch((_) => {
+        this.snackBar.open('Error deleting products', 'Close', {
+          duration: 2000,
+        });
       });
   }
 }

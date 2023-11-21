@@ -60,34 +60,20 @@ export class RegisterComponent {
   submitDetails() {
     const postData = { ...this.registerForm.value };
     delete postData.confirmPassword;
-    this.authService.signup(postData as UserSignupReq).then((response) => {
-      try {
-        if (response.status === 200) {
+    this.authService
+      .signup(postData as UserSignupReq)
+      .then((res) => {
+        if (res.status === 200) {
           this.snackBar.open('Registered Successfully', 'Close', {
             duration: 3000,
           });
           this.router.navigate(['login']);
         }
-      } catch (e) {
-        console.log(e);
+      })
+      .catch((e) => {
         this.snackBar.open('Something went wrong!', 'Close', {
           duration: 3000,
         });
-      }
-    });
-    // this.authService.registerUser(postData as UserSignupReq).subscribe({
-    //   next: (response) => {
-    //     this.snackBar.open('Registered Successfully', 'Close', {
-    //       duration: 3000,
-    //     });
-    //     this.router.navigate(['login']);
-    //   },
-    //   error: (e) => {
-    //     console.log(e);
-    //     this.snackBar.open('Something went wrong!', 'Close', {
-    //       duration: 3000,
-    //     });
-    //   },
-    // });
+      });
   }
 }

@@ -37,55 +37,19 @@ export class LoginComponent {
       .login(user)
       .then((res: any) => {
         if (res?.status === HttpStatusCode.Ok) {
-          console.log(res?.data, 'heloooooo');
-          this.authService.setAuthToken(res?.data?.token);
-          //TODO: change hardcoded values
-          sessionStorage.setItem('email', 'blz@example.com');
-          sessionStorage.setItem('role', 'CUSTOMER');
           this.router.navigate(['/home']);
-        } else {
-          this.snackBar.open(res?.data?.message, 'Close', {
-            duration: 3000,
-          });
         }
       })
-      .catch((_) => {
-        this.snackBar.open('Something went wrong!', 'Close', {
+      .catch((e) => {
+        let errorMessage = 'Something went wrong!';
+        if (e?.response?.status === HttpStatusCode.Forbidden) {
+          errorMessage = "Email or Password isn't correct.";
+        } else if (e?.response?.data?.message) {
+          errorMessage = e.response.data.message;
+        }
+        this.snackBar.open(errorMessage, 'Close', {
           duration: 3000,
         });
       });
   }
-  // loginUser() {
-  //   const { email, password } = this.loginForm.value;
-  //   this.authService.getUserByEmail(email as string).subscribe({
-  //     next: (response) => {
-  //       if (response.length > 0 && response[0].password === password) {
-  //         this.authService.getUserRole(email as string).subscribe({
-  //           next: (user) => {
-  //           if(user){
-  //             const role = user.role
-  //             sessionStorage.setItem('email', email as string);
-  //             sessionStorage.setItem('role', role);
-  //             this.router.navigate(['/home']);
-  //           }else{
-  //               this.snackBar.open('Error getting user role.', 'Close', {
-  //                 duration: 3000,
-  //               });
-  //           }
-  //         },
-  //         });
-  //       } else {
-  //         this.snackBar.open("Email or Password isn't correct.", 'Close', {
-  //           duration: 3000,
-  //         });
-  //       }
-  //     },
-  //     error: (e) => {
-  //       this.snackBar.open('Something Went wrong!', 'Close', {
-  //         duration: 3000,
-  //       });
-  //     }
-
-  // })
-  // }
 }
