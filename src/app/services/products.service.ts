@@ -1,37 +1,56 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../interfaces/product';
+import { Product, NewProduct } from '../interfaces/product';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductsService {
   private baseUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) { }
+  constructor(private authService: AuthService, private http: HttpClient) {}
   // add new product
-  addProduct(productDetails: Product){
-    const url = `${this.baseUrl}/products`;
-    return this.http.post(url, productDetails);
+  addProduct(productDetails: NewProduct) {
+    const url = '/products/add';
+    return this.authService.authenticatedRequest('POST', url, productDetails);
   }
-  getProductById(id: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/products?id=${id}`);
+
+  getProductById(id: string) {
+    return this.authService
+      .authenticatedRequest('GET', `/products/${id}`, {})
+      .then((res) => {
+        if (res?.status === 200) {
+          return res?.data;
+        }
+      });
   }
   // get all products
-  getAllProducts(): Observable<Product[]> {
-    const url = `${this.baseUrl}/products`; 
-    return this.http.get<Product[]>(url);
+  getAllProducts() {
+    return this.authService
+      .authenticatedRequest('GET', '/products', {})
+      .then((res) => {
+        if (res?.status === 200) {
+          return res?.data;
+        }
+      });
   }
-   // Edit a product
-  editProduct(id: string, productDetails: Product): Observable<Product> {
-    const url = `${this.baseUrl}/products/${id}`;
-    return this.http.put<Product>(url, productDetails);
+  // Edit a product
+  editProduct(id: string, productDetails: NewProduct) {
+    return this.authService.authenticatedRequest(
+      'PUT',
+      `/products/edit/${id}`,
+      productDetails
+    );
   }
 
   // Delete a product
-  deleteProduct(id: string): Observable<void> {
-    const url = `${this.baseUrl}/products/${id}`;
-    return this.http.delete<void>(url);
+  deleteProduct(id: string) {
+    return this.authService.authenticatedRequest(
+      'DELETE',
+      `/products/delete/${id}`,
+      {}
+    );
   }
 }
