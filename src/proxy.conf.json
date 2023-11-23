@@ -7,7 +7,7 @@
     "target": "http://localhost:8765",
     "secure": false
   },
-  "/products": {
+  "/inventory/": {
     "target": "http://localhost:8765",
     "secure": false
   }

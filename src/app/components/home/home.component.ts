@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   cartItemCount(): number {
-    return this.shoppingCartService.getCartItems().length;
+    return this.shoppingCartService.getNumberOfItems();
   }
 
   logOut() {

@@ -30,14 +30,13 @@ export class AdminFormComponent {
       lastName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      role: ['admin'],
     });
   }
 
   submitAdmin() {
     const formData = this.adminForm.value;
     this.userService
-      .signup(formData)
+      .authenticatedRequest('POST', '/user/add-admin', formData)
       .then((_) => {
         this.snackBar.open('User created successfully', 'Close', {
           duration: 3000,

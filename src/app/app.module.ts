@@ -27,7 +27,6 @@ import { AdminFormComponent } from './components/Forms/admin-form/admin-form.com
 import { CustomerHomePageComponent } from './components/customer-home-page/customer-home-page.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -59,7 +58,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTableModule,
     MatIconModule,
     FormsModule,
-    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

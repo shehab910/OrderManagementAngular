@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/products.service';
-import { Router } from '@angular/router';
 import { HttpStatusCode } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -23,7 +22,6 @@ export class ProductsListComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private router: Router,
     private snackBar: MatSnackBar
   ) {}
 

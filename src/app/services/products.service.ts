@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Product, NewProduct } from '../interfaces/product';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { NewProduct } from '../interfaces/product';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
-  private baseUrl = 'http://localhost:3000';
-
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  constructor(private authService: AuthService) {}
   // add new product
   addProduct(productDetails: NewProduct) {
     const url = '/products/add';
@@ -29,7 +25,7 @@ export class ProductsService {
   // get all products
   getAllProducts() {
     return this.authService
-      .authenticatedRequest('GET', '/products', {})
+      .authenticatedRequest('GET', '/inventory/all', {})
       .then((res) => {
         if (res?.status === 200) {
           return res?.data;

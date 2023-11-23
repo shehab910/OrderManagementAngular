@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/auth';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -16,7 +14,6 @@ export class AdminsTableComponent implements OnInit {
 
   constructor(
     private usersService: AuthService,
-    private router: Router,
     private snackBar: MatSnackBar
   ) {}
 
@@ -26,13 +23,11 @@ export class AdminsTableComponent implements OnInit {
   }
 
   loadAdmins() {
-    // Fetch all users
     this.usersService
-      .authenticatedRequest('GET', '/user/all', {})
+      .authenticatedRequest('GET', '/user/admins', {})
       .then((res) => {
-        // console.log(res);
         const { data } = res;
-        this.admins = data.filter((user) => user.role !== 'MANAGER');
+        this.admins = data;
       })
       .catch((e) => {
         console.log(e);
@@ -41,37 +36,7 @@ export class AdminsTableComponent implements OnInit {
         });
       });
   }
-  demoteAdmin(email: string) {
-    this.usersService
-      .authenticatedRequest('PUT', `/user/demote?email=${email}`, {})
-      .then((_) => {
-        this.snackBar.open('User demoted successfully', 'Close', {
-          duration: 3000,
-        });
-        this.loadAdmins();
-      })
-      .catch((_) => {
-        this.snackBar.open('Error demoting user', 'Close', {
-          duration: 3000,
-        });
-      });
-  }
-  promoteUser(email: string) {
-    this.usersService
-      .authenticatedRequest('PUT', `/user/promote?email=${email}`, {})
-      .then((_) => {
-        this.snackBar.open('User promoted successfully', 'Close', {
-          duration: 3000,
-        });
-        this.loadAdmins();
-      })
-      .catch((_) => {
-        this.snackBar.open('Error promoting user', 'Close', {
-          duration: 3000,
-        });
-      });
-  }
-  //TODO: Implement deleteAdmin
+
   deleteAdmin(email: string) {
     this.usersService
       .authenticatedRequest('DELETE', `/user/delete-admin?email=${email}`, {})
