@@ -38,13 +38,13 @@ export class AdminFormComponent {
     this.userService
       .authenticatedRequest('POST', '/user/add-admin', formData)
       .then((_) => {
-        this.snackBar.open('User created successfully', 'Close', {
+        this.snackBar.open('Admin created successfully', 'Close', {
           duration: 3000,
         });
         this.router.navigate(['/home']);
       })
       .catch((_) => {
-        this.snackBar.open('Error creating user', 'Close', {
+        this.snackBar.open('Error creating admin', 'Close', {
           duration: 3000,
         });
       });
