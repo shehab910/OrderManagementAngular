@@ -27,6 +27,9 @@ import { AdminFormComponent } from './components/Forms/admin-form/admin-form.com
 import { CustomerHomePageComponent } from './components/customer-home-page/customer-home-page.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CategoriesListComponent } from './components/categories-list/categories-list.component';
+import { CategoryFormComponent } from './components/Forms/category-form/category-form.component';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +44,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     CustomerHomePageComponent,
     ShoppingCartComponent,
     CheckoutComponent,
+    CategoriesListComponent,
+    CategoryFormComponent,
   ],
   imports: [
     BrowserModule,

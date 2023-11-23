@@ -10,5 +10,9 @@
   "/inventory/": {
     "target": "http://localhost:8765",
     "secure": false
+  },
+  "/categories/": {
+    "target": "http://localhost:8765",
+    "secure": false
   }
 }
