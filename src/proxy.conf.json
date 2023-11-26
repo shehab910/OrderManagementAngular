@@ -14,5 +14,10 @@
   "/categories/": {
     "target": "http://localhost:8765",
     "secure": false
+  },
+  "/order/": {
+    "target": "http://localhost:8765",
+    "secure": false
   }
+  
 }

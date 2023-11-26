@@ -9,7 +9,7 @@ export class CategoryService {
   
   constructor(private authService: AuthService) {}
 
-  // get all categories
+  // Get all categories
   getAllCategories() {
     return this.authService
     .authenticatedRequest('GET', '/categories/all', {})
@@ -20,7 +20,7 @@ export class CategoryService {
       });
     }
 
-    // get a single category 
+    // Get a single category 
     getCategoryById(id: string) {
       return this.authService
       .authenticatedRequest('GET', `/categories/${id}`, {})
@@ -31,7 +31,7 @@ export class CategoryService {
       });
     }
     
-    // add new category
+  // Add a new category
     addCategory(category: Category) {
       const url = '/categories/add';
       return this.authService.authenticatedRequest('POST', url, category);

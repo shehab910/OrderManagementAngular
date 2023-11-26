@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { UserLoginReq, UserSignupReq } from '../interfaces/auth';
+import { DatePipe } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root',
@@ -49,9 +51,11 @@ export class AuthService {
       data: user,
     }).then((res) => {
       const userDetails = res?.data;
+      console.log(userDetails);
       this.setAuthToken(userDetails?.token);
       sessionStorage.setItem('email', userDetails?.email);
       sessionStorage.setItem('role', userDetails?.role);
+      sessionStorage.setItem('id',userDetails?.id);
       return res;
     });
   }

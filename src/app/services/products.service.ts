@@ -7,32 +7,37 @@ import { AuthService } from './auth.service';
 })
 export class ProductsService {
   constructor(private authService: AuthService) {}
-  // add new product
-  addProduct(productDetails: NewProduct) {
-    const url = '/products/add';
-    return this.authService.authenticatedRequest('POST', url, productDetails);
-  }
-
-  getProductById(id: string) {
-    return this.authService
-      .authenticatedRequest('GET', `/products/${id}`, {})
-      .then((res) => {
-        if (res?.status === 200) {
-          return res?.data;
-        }
-      });
-  }
+  
   // get all products
   getAllProducts() {
     return this.authService
-      .authenticatedRequest('GET', '/inventory/all', {})
-      .then((res) => {
-        if (res?.status === 200) {
+    .authenticatedRequest('GET', '/inventory/all', {})
+    .then((res) => {
+      if (res?.status === 200) {
+        return res?.data;
+      }
+    });
+  }
+
+  // get a specific product
+  getProductById(id: string) {
+    return this.authService
+    .authenticatedRequest('GET', `/products/${id}`, {})
+    .then((res) => {
+      if (res?.status === 200) {
           return res?.data;
         }
       });
-  }
-  // Edit a product
+    }
+    
+    // add new product
+    addProduct(productDetails: NewProduct) {
+      const url = '/products/add';
+      return this.authService.authenticatedRequest('POST', url, productDetails);
+    }
+
+
+    // Edit a product
   editProduct(id: string, productDetails: NewProduct) {
     return this.authService.authenticatedRequest(
       'PUT',
@@ -42,7 +47,7 @@ export class ProductsService {
   }
 
   // Delete a product
-  deleteProduct(id: string) {
+  deleteProduct(id: number) {
     return this.authService.authenticatedRequest(
       'DELETE',
       `/products/delete/${id}`,

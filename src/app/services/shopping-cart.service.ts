@@ -1,16 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { Product } from '../interfaces/product';
 import { CartItem } from '../interfaces/cartItem';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from './auth.service';
+import { Item } from '../interfaces/item';
+import { DatePipe } from '@angular/common';
+import { HttpStatusCode } from 'axios';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class ShoppingCartService {
   cartItems: CartItem[] = [];
+  items: Item[] = [];
+  item: Item;
   inventory: Product[] = [];
-
-  constructor(private snackBar: MatSnackBar) {
+  orderId: number;
+  
+  constructor(private snackBar: MatSnackBar,private authService: AuthService) {
     this.cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
   }
 
@@ -83,6 +91,36 @@ export class ShoppingCartService {
 
   clearCart() {
     this.cartItems = [];
+    this.items = [];
     this.syncCart();
+  }
+
+  async submitOrder(cartItems: CartItem[]) {
+    try {
+      let order = {
+        customerId: sessionStorage.getItem('id'),
+        orderDate: new Date()
+      };
+  
+      const orderResponse = await this.authService.authenticatedRequest('POST', '/order/create', order);
+      this.orderId = orderResponse.data.orderId;
+  
+      for (let i = 0; i < cartItems.length; i++) {
+        let newItem = {
+          orderId: this.orderId,
+          productId: cartItems[i].product.id,
+          itemPrice: cartItems[i].product.price,
+          quantity: cartItems[i].quantity
+        };
+        this.items.push(newItem);
+      }
+
+      const submitResponse = await this.authService.authenticatedRequest('POST', '/order/submit', this.items);
+      this.clearCart();
+      return submitResponse;
+    } catch (error) {
+      console.error('Error submitting order:', error);
+      return { status: HttpStatusCode.InternalServerError, data: null };
+    }
   }
 }
