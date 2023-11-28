@@ -8,6 +8,7 @@ import { ProductFormComponent } from './components/Forms/product-form/product-fo
 import { AdminFormComponent } from './components/Forms/admin-form/admin-form.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CategoryFormComponent } from './components/Forms/category-form/category-form.component';
 
 const routes: Routes = [
   {path:'home', component: HomeComponent, canActivate: [authGuard]},
@@ -16,6 +17,8 @@ const routes: Routes = [
   {path:'login', component: LoginComponent},
   { path: 'products/edit/:id', component: ProductFormComponent },
   { path: 'products/add', component: ProductFormComponent },
+  { path: 'categories/edit/:id', component: CategoryFormComponent },
+  { path: 'categories/add', component: CategoryFormComponent },
   { path: 'admins/edit/:id', component: AdminFormComponent },
   { path: 'admins/add', component: AdminFormComponent },
   { path: 'cart', component: ShoppingCartComponent },

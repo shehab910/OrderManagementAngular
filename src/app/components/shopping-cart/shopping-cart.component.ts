@@ -1,5 +1,7 @@
+import { HttpStatusCode } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartItem } from 'src/app/interfaces/cartItem';
 import { Product } from 'src/app/interfaces/product';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
@@ -14,7 +16,8 @@ export class ShoppingCartComponent {
 
   constructor(
     private shoppingCartService: ShoppingCartService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.cartItems = shoppingCartService.getCartItems();
   }
@@ -50,4 +53,24 @@ export class ShoppingCartComponent {
   goToCheckout() {
     this.router.navigate(['checkout']);
   }
+
+  submitOrder(cartItems: CartItem[]){
+    if(cartItems.length>0)
+    {this.shoppingCartService.submitOrder(cartItems).then((res) => {
+      if (res && res.status === HttpStatusCode.Ok) {
+        this.router.navigate(['/home']);
+      }
+    })
+    .catch((_) => {
+      this.snackBar.open('Something went wrong!', 'Close', {
+        duration: 3000,
+      });
+    });
+  }else
+    {
+      this.snackBar.open('Please insert items into your cart first', 'Close', {
+        duration: 3000,
+      });
+    }
+}
 }

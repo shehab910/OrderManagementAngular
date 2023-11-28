@@ -1,0 +1,16 @@
+<div class="container">
+    <h2>{{ isEditing ? 'Edit Category' : 'Add New Category' }}</h2>
+    <form [formGroup]="categoryForm" (ngSubmit)="submitCategory()">
+        <!-- For editing, include a hidden input to capture the category ID -->
+        <input *ngIf="isEditing" type="hidden" formControlName="id">
+
+        <div class="form-group">
+            <label for="name">Category Name:</label>
+            <input type="text" id="name" formControlName="name" class="form-control" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">
+            {{ isEditing ? 'Update Category' : 'Add Category' }}
+        </button>
+    </form>
+</div>

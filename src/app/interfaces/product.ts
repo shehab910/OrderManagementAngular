@@ -5,7 +5,7 @@ export interface Product {
   price: number;
   quantity: number;
   imageUrl: string;
-  id: string;
+  id: number;
 }
 
 export interface NewProduct {
