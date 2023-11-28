@@ -41,5 +41,8 @@ export class CustomerHomePageComponent implements OnInit {
   }
   addToCart(product: Product) {
     this.shoppingCartService.addToCart(product);
+    this.snackBar.open('Added to cart', 'Close', {
+      duration: 2000,
+    });
   }
 }

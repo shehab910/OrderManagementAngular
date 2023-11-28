@@ -4,7 +4,6 @@ import { CartItem } from '../interfaces/cartItem';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from './auth.service';
 import { Item } from '../interfaces/item';
-import { DatePipe } from '@angular/common';
 import { HttpStatusCode } from 'axios';
 
 @Injectable({
@@ -14,8 +13,6 @@ import { HttpStatusCode } from 'axios';
 export class ShoppingCartService {
   cartItems: CartItem[] = [];
   items: Item[] = [];
-  item: Item;
-  inventory: Product[] = [];
   orderId: number;
   
   constructor(private snackBar: MatSnackBar,private authService: AuthService) {
